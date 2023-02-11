@@ -1,16 +1,86 @@
+//  VARIABLES
+
+var lowerCase = "abcdefghijklmnopqrstuvwxyz" // lowerCase 
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Uppercase 
+var numbers = "1234567890"; //Stricly numbers 
+var characters = "!@#$%^&*()_+'"; //All characters 
+var randomSelection;
+var length;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//BUTTON PRESS TO GENERATE A PASSWORD 
+// var click = document.getElementById("generate");
+// click.addEventListener("click", "generate");
+// functiondemo();
+
+// var generateBtn = document.getElementById("#generate")[0];
+// generate.addEventListener("click", function (event)) {
+//   alert("Choose a length of characters from 8 to 128");
+// }
+
+
+
+
+
+
+
+
+
 // Assignment Code
 
-// Defining the characters 
 
-var letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numbers = "1234567890";
-var symbols = "!@#$%^&*()_+'";
 
 // Declaring the variables
 
 
+// PROMPT for generating password 
+// var criteria = prompt("Please enter  ")
 
-var generateBtn = document.querySelector("#generate");
+
+
+
+
+// function generatePassword() {
+//   var criteria = 
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+// Defining the characters 
+
+
+
+
+
 
 // Write password to the #password input
 function writePassword() {
