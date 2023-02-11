@@ -21,33 +21,39 @@ function newPassword() {
 function generateNewPassword() {
   // Prompt for the new password when clicked
   length = prompt(
-    "Enter the lenght of characters you would like for your new password *Number between 8 - 128*"
+    "Enter the length of characters you would like for your new password *Number between 8 - 128*"
   );
   // if there was a user error, "try again for a second time"
-  if (!length) {
+  if (!length) { // if cancel is pressed, then the alert (Please try again) will pop up and code will not run 
     alert("Please try again! ");
 
     //setting the less and or more than for the charaters asked
   } else if (length < 8 || length > 128) {
-    length = prompt("New password must contain a number from 8 - 128");
+    length = prompt("New password must contain a number from 8 - 128"); // Beginning  of prompt
   } else {
-    numbers = confirm("Incude numbers in your password *YES for ok and Cancel for NO* ");
-    upperCase = confirm("Include upper case letters? *YES for ok and Cancel for NO*");
-    lowerCase = confirm("Iclude lower case letters *YES for ok and Cancel for NO*");
-    characters = confirm("include the amount of characters in your password");
+    numbers = confirm(
+      "Incude numbers in your password *YES for ok and Cancel for NO* " // Numbers prompt 
+    );
+    upperCase = confirm(
+      "Include upper case letters? *YES for ok and Cancel for NO*" //upperCase prompt
+    );
+    lowerCase = confirm(
+      "Iclude lower case letters *YES for ok and Cancel for NO*" // lowerCase Prompt
+    );
+    characters = confirm("include the amount of characters in your password"); // characters prompt
 
-    // Boolean view for dev 
+    // Boolean view for dev
     console.log(numbers, upperCase, lowerCase, characters);
   }
-};
+}
+// LOGIC
+
+
 //   if (numbers && characters && upperCase) {
 //     randomSelection = characters.concat(numbers, upperCase);
 
 //   }
 
 // }
-
-
-
 
 generateBtn.addEventListener("click", generateNewPassword);
