@@ -13,6 +13,7 @@ var generateBtn = document.querySelector("#generate");
 function newPassword() {
   var password = generateNewPassword();
   var passwordCharacters = document.querySelector("#password");
+  passwordCharacters.value = password;
 }
 
 //Password parameters
@@ -30,12 +31,21 @@ function generateNewPassword() {
   } else if (length < 8 || length > 128) {
     length = prompt("New password must contain a number from 8 - 128");
   } else {
-    numbers = confirm("Incude numbers in your password");
-    upperCase = confirm("Include the amount of upper case letters");
-    lowerCase = confirm("Iclude the amount of lower case letters");
+    numbers = confirm("Incude numbers in your password *YES for ok and Cancel for NO* ");
+    upperCase = confirm("Include upper case letters? *YES for ok and Cancel for NO*");
+    lowerCase = confirm("Iclude lower case letters *YES for ok and Cancel for NO*");
     characters = confirm("include the amount of characters in your password");
+
+    // Boolean view for dev 
+    console.log(numbers, upperCase, lowerCase, characters);
   }
-}
+};
+//   if (numbers && characters && upperCase) {
+//     randomSelection = characters.concat(numbers, upperCase);
+
+//   }
+
+// }
 
 
 
