@@ -15,89 +15,75 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];//Stricly numbers
 character = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/"]; //All characters
 
 
-
 var choices;
 
+
+var get = document.querySelector("#generate");
+
 get.addEventListener("click", function () {
-  newGen = generatePassword();
-  document.getElementById("password").placeholder = ps;
+  newGen = generateNewPassword();
+  document.getElementById("password").placeholder = newGen;
+});
 
 
 
-  function generateNewPassword() {
-    // Prompt for the new password when clicked
-    enter = parseInt(
-      prompt(
-        "Enter the length of characters you would like for your new password *Number between 8 - 128*" // beginning of prompt
-      ));
-    // if there was a user error, "try again for a second time"
-    if (!enter) {
-      // the ! will invert a boolean . if cancel is pressed, then the alert (Please try again) will pop up and code will not run
-      alert("Please try again! "); // code will not run if pressed cancel
-
-      //if everything else above is true then the bottom will alert
-    } else if (enter < 8 || enter > 128) {
-      enter = prompt("New password must contain a number from 8 - 128"); // Beginning  of prompt
-    } else {
-      numbers = confirm(
-        "Include numbers in your password? *YES for ok and Cancel for NO* " // Numbers prompt
-      );
-      upperCase = confirm(
-        "Include upper case letters? *YES for ok and Cancel for NO*" //upperCase prompt
-      );
-      lowerCase = confirm(
-        "Include lower case letters? *YES for ok and Cancel for NO*" // lowerCase Prompt
-      );
-      character = confirm("include characters in your password"); // characters prompt
 
 
+function generateNewPassword() {
+  // Prompt for the new password when clicked
+  enter = parseInt(
+    prompt(
+      "Enter the length of characters you would like for your new password *Number between 8 - 128*" // beginning of prompt
+    ));
+  // if there was a user error, "try again for a second time"
+  if (!enter) {
+    // the ! will invert a boolean . if cancel is pressed, then the alert (Please try again) will pop up and code will not run
+    alert("Please try again! "); // code will not run if pressed cancel
 
-      // LOGIC
+    //if everything else above is true then the bottom will alert
+  } else if (enter < 8 || enter > 128) {
+    enter = prompt("New password must contain a number from 8 - 128"); // Beginning  of prompt
+  } else {
+    numbers = confirm(
+      "Include numbers in your password? *YES for ok and Cancel for NO* " // Numbers prompt
+    );
+    upperCase = confirm(
+      "Include upper case letters? *YES for ok and Cancel for NO*" //upperCase prompt
+    );
+    lowerCase = confirm(
+      "Include lower case letters? *YES for ok and Cancel for NO*" // lowerCase Prompt
+    );
+    character = confirm("include characters in your password"); // characters prompt
 
-      if (addNumbers && addCharacters && addUpperCase && addLowerCase) {
-        choices = character.concat(
-          numbers,
-          characters,
-          upper,
-          lower)
+  };
 
+  // LOGIC
 
-        // if only 3/4 options are picked
-      } else if (addNumbers && addUpperCase && addLowerCase) {
-        choices = character.concat(numbers, upper, lower); // numbers, uppercase and lowercase are picked
-      } else if (addUpperCase && addLowerCase && addCharacters) {
-        choices = character.concat(upper, lower, characters); // uppercase, lowercase and characters are picked
-      } else if (addLowerCase && addUpperCase && addNumbers) {
-        choices = character.concat(lower, upper, numbers); // lowercase, uppercase and numbers are picked
-      } else if (addCharacters && addUpperCase && addNumbers) {
-        choices = character.concat(characters, upper, numbers); // characters,  uppercase and numbers are picked
-
-      }
-
-      var output = [];
-
-      //Loop 
-
-      for (var i = 0; i < enter; i++) {
-        var randIndex = choices[Math.floor(Math.random() * choices.length)];
-        output.push(randIndex);
-
-      }
-
-      var newGen = password.join("");
-      UserInput(newGen);
-      return newGen;
-
-      // box insert
-
-      function UserInput(newGen) {
-        document.getElementById("#password").textContent = newGen;
-      }
+  if (addNumbers && addCharacters && addUpperCase && addLowerCase) {
+    choices = character.concat(
+      numbers,
+      characters,
+      upper,
+      lower)
 
 
+    // if only 3/4 options are picked
+  } else if (addNumbers && addUpperCase && addLowerCase) {
+    choices = character.concat(numbers, upper, lower); // numbers, uppercase and lowercase are picked
+  } else if (addUpperCase && addLowerCase && addCharacters) {
+    choices = character.concat(upper, lower, characters); // uppercase, lowercase and characters are picked
+  } else if (addLowerCase && addUpperCase && addNumbers) {
+    choices = character.concat(lower, upper, numbers); // lowercase, uppercase and numbers are picked
+  } else if (addCharacters && addUpperCase && addNumbers) {
+    choices = character.concat(characters, upper, numbers); // characters,  uppercase and numbers are picked
 
-    }
+  }
+
+  else if (addCharacters && addNumbers) {
+    choices = character.concat(character, numbers)
+  } else if (addUpperCase && lowerCase) {
+    choices = character.concat(upper, lower)
+  }
 
 
-
-    generateBtn.addEventListener("click", generateNewPassword);
+};
