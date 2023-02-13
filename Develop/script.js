@@ -1,89 +1,84 @@
-// var outputBox = document.querySelector("#password");
 
-//  VARIABLES
-
-var addLowerCase;
-var addUpperCase;
-var addNumbers;
-var addCharacters;
-
+//  CREATING THE ARRAYS 
 
 lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; // lowerCase
 upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]; // Uppercase
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];//Stricly numbers
-
-character = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/"]; //All characters
-
-
-var choices;
+characters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/"]; //All characters
 
 
 var get = document.querySelector("#generate");
 
 get.addEventListener("click", function () {
   newGen = generateNewPassword();
+  if (!newGen) return // Won't do anything if newGen is not valid
   document.getElementById("password").placeholder = newGen;
 });
 
 
-
-
-
 function generateNewPassword() {
-  // Prompt for the new password when clicked
-  enter = parseInt(
-    prompt(
-      "Enter the length of characters you would like for your new password *Number between 8 - 128*" // beginning of prompt
-    ));
-  // if there was a user error, "try again for a second time"
-  if (!enter) {
-    // the ! will invert a boolean . if cancel is pressed, then the alert (Please try again) will pop up and code will not run
-    alert("Please try again! "); // code will not run if pressed cancel
-
-    //if everything else above is true then the bottom will alert
-  } else if (enter < 8 || enter > 128) {
-    enter = prompt("New password must contain a number from 8 - 128"); // Beginning  of prompt
-  } else {
-    numbers = confirm(
-      "Include numbers in your password? *YES for ok and Cancel for NO* " // Numbers prompt
-    );
-    upperCase = confirm(
-      "Include upper case letters? *YES for ok and Cancel for NO*" //upperCase prompt
-    );
-    lowerCase = confirm(
-      "Include lower case letters? *YES for ok and Cancel for NO*" // lowerCase Prompt
-    );
-    character = confirm("include characters in your password"); // characters prompt
-
-  };
-
-  // LOGIC
-
-  if (addNumbers && addCharacters && addUpperCase && addLowerCase) {
-    choices = character.concat(
-      numbers,
-      characters,
-      upper,
-      lower)
+  var choices = [];
 
 
-    // if only 3/4 options are picked
-  } else if (addNumbers && addUpperCase && addLowerCase) {
-    choices = character.concat(numbers, upper, lower); // numbers, uppercase and lowercase are picked
-  } else if (addUpperCase && addLowerCase && addCharacters) {
-    choices = character.concat(upper, lower, characters); // uppercase, lowercase and characters are picked
-  } else if (addLowerCase && addUpperCase && addNumbers) {
-    choices = character.concat(lower, upper, numbers); // lowercase, uppercase and numbers are picked
-  } else if (addCharacters && addUpperCase && addNumbers) {
-    choices = character.concat(characters, upper, numbers); // characters,  uppercase and numbers are picked
 
+  var enter = parseInt(
+    prompt('Enter the length of characters you would like for your new password *Number between 8 - 128*')
+  );
+  console.log(`Characters: ${enter}`)
+
+  if (enter < 8 || enter > 128 || !enter) {
+    alert(`Please try again!`)
+    return false
   }
 
-  else if (addCharacters && addNumbers) {
-    choices = character.concat(character, numbers)
-  } else if (addUpperCase && lowerCase) {
-    choices = character.concat(upper, lower)
+  var addNumbers = confirm("Include numbers in your password? *YES for ok and Cancel for NO*")
+  var addUpperCase = confirm("Include upper case letters? *YES for ok and Cancel for NO*");
+  var addLowerCase = confirm("Include lower case letters? *YES for ok and Cancel for NO*");
+  var addCharacters = confirm("include characters in your password");
+
+  console.log(addNumbers, addCharacters, addUpperCase, addLowerCase)
+
+  if (addNumbers) {
+    choices.push(numbers)
+  }
+
+  if (addCharacters) {
+    choices.push(characters)
+  }
+
+  if (addUpperCase) {
+    choices.push(upper)
+  }
+
+  if (addLowerCase) {
+    choices.push(lower)
   }
 
 
-};
+  console.log(choices)
+
+  var newPassword = ""
+
+  for (var i = 0; i < choices.length; i++) {
+    var randomLetter = choices[i][Math.floor(Math.random() * choices[i].length)];
+    console.log(randomLetter)
+    newPassword += randomLetter
+  }
+
+  for (var i = choices.length; i < enter; i++) {
+    var randomArray = choices[Math.floor(Math.random() * choices.length)];
+    console.log(randomArray)
+    var randomLetter = randomArray[Math.floor(Math.random() * randomArray.length)];
+    // console.log(randomLetter)
+
+
+    console.log(randomLetter)
+    newPassword += randomLetter
+    // newPassword.push();
+  }
+
+
+  return newPassword
+
+
+}
